@@ -1,0 +1,32 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title= content_for(:title) || "Daily Task"
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
+    %meta{:content => "yes", :name => "mobile-web-app-capable"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = yield :head
+    %link{:href => "/icon.png", :rel => "icon", :type => "image/png"}/
+    %link{:href => "/icon.svg", :rel => "icon", :type => "image/svg+xml"}/
+    %link{:href => "/icon.png", :rel => "apple-touch-icon"}/
+    = stylesheet_link_tag :app, "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+  %body
+    - if notice
+      .alert.alert-success.mb-0
+        = notice
+    - if alert
+      .alert.alert-danger.mb-0
+        = alert
+    %nav.navbar.navbar-expand-sm.navbar-dark.bg-dark.mb-3
+      %h2.text-white.ms-2
+        = link_to 'タスク管理', root_path, class: 'text-decoration-none text-white'
+      .ms-auto.me-2
+        .d-inline-block
+          - if authenticated?
+            = button_to 'ログアウト', session_path, method: :delete, class: 'btn btn-outline-danger'
+    = yield

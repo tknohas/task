@@ -1,0 +1,7 @@
+%h2.text-center.mt-4.mb-4 ホーム
+
+- if authenticated?
+  %p= Current.user.email_address
+  = button_to 'Sign out', session_path, method: :delete
+- else
+  = link_to 'Sign in', new_session_path
