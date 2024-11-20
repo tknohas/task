@@ -1,7 +1,7 @@
 RSpec.describe 'Tasks', type: :system do
   let!(:user) { create(:user, name: 'Alice') }
   let!(:executor) { create(:user, name: 'Bob') }
-  let!(:task) { create(:task, user:, title: 'お茶を買う', executor_id: executor.id) }
+  let!(:task) { create(:task, user:, title: 'お茶を買う', executor_id: executor.id, created_at: '2024-11-20') }
 
   before do
     login(user)
@@ -72,6 +72,26 @@ RSpec.describe 'Tasks', type: :system do
       expect(page).to have_content 'Alice' # 作成者
       expect(page).to have_content 'Bob'   # 担当者
       expect(page).to have_content '編集'
+    end
+    
+    it 'タスクを削除できる', :js do
+      click_on '削除'
+      expect do
+        expect(page.accept_confirm).to eq '本当に削除しますか？'
+        expect(page).to have_content '削除しました'
+      end.to change(Task, :count).by(-1)
+    end
+  end
+
+  describe 'タスク詳細' do
+    it 'タスクの情報が表示される' do
+      click_on 'お茶を買う'
+      
+      expect(page).to have_css 'h2', text: 'タスク詳細'
+      expect(page).to have_content 'お茶を買う'
+      expect(page).to have_content 'Alice' # 作成者
+      expect(page).to have_content 'Bob'   # 担当者
+      expect(page).to have_content '2024年11月20日'
     end
   end
 end
