@@ -1,8 +1,11 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:edit, :update]
+  before_action :set_task, only: %i[show edit update destroy]
 
   def index
     @tasks = Task.order(created_at: :desc)
+  end
+  
+  def show
   end
 
   def new
@@ -27,6 +30,11 @@ class TasksController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+  
+  def destroy
+    @task.destroy!
+    redirect_to tasks_path, notice: '削除しました'
   end
 
   private
