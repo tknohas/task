@@ -64,4 +64,14 @@ RSpec.describe 'Tasks', type: :system do
       end
     end
   end
+  
+  describe 'タスク一覧' do
+    it 'タスクの情報が表示される' do
+      expect(page).to have_css 'h2', text: 'やること一覧'
+      expect(page).to have_content 'お茶を買う'
+      expect(page).to have_content 'Alice' # 作成者
+      expect(page).to have_content 'Bob'   # 担当者
+      expect(page).to have_content '編集'
+    end
+  end
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root "home#index"
+  root "tasks#index"
 
   resource :session
   resources :passwords, param: :token
-  resources :tasks, only: %i[new create edit update]
+  resources :tasks, only: %i[index new create edit update]
 end

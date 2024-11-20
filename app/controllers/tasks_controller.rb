@@ -1,6 +1,10 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update]
-  
+
+  def index
+    @tasks = Task.order(created_at: :desc)
+  end
+
   def new
     @task = Current.user.tasks.build
   end
