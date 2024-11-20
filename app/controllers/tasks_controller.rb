@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update]
+  
   def new
     @task = Current.user.tasks.build
   end
