@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   resource :session
   resources :passwords, param: :token
-  resources :tasks, only: %i[new create]
+  resources :tasks, only: %i[new create edit update]
 end
