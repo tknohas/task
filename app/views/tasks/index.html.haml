@@ -6,22 +6,15 @@
     %thead.table-light
       %tr
         %th やること
-        %th 作成者
-        %th 担当者
-        %th
-        %th
+        %th 登録日
         %th
     %tbody
       - @tasks.each do |task|
         %tr
           %td= link_to task.title, task_path(task), class: 'text-decoration-none'
-          %td= task.user.name
-          %td
-            - if task.executor
-              = "#{task.executor.name}"
+          -# %td
+          -#   - if task.executor
+          -#     = "#{task.executor.name}"
+          %td= task.created_at.strftime("%Y/%m/%d")
           %td
             = button_to '完了', task_complete_path(task), method: :patch, class: 'btn btn-outline-success'
-          %td
-            = link_to '編集', edit_task_path(task), class: 'btn btn-sm btn-outline-primary me-2'
-          %td
-            = button_to '削除', task_path(task), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-sm btn-outline-danger me-2'

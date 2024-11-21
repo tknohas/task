@@ -20,6 +20,7 @@ gem "thruster", require: false
 
 gem "haml-rails"
 gem "simple_form"
+gem 'line-bot-api'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

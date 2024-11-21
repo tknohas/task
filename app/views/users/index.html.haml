@@ -1,0 +1,7 @@
+%h2.text-center.mt-4.mb-4 ログイン
+.container
+  .card
+    .card-body
+      - @users.each do |user|
+        = form_with url: user_sign_in_path(user) do |form|
+          = form.submit user.id

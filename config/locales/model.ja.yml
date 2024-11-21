@@ -6,4 +6,4 @@ ja:
       task:
         title: タイトル
         executor: 担当者
-        memo: メモ
+        description: 説明
