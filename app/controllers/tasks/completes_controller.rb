@@ -1,13 +1,19 @@
 class Tasks::CompletesController < ApplicationController
-  def update
-    @task = Task.find(params[:task_id])
+  before_action :set_task, only: %i[create destroy]
+  
+  def create
     @task.update!(completed_at: Time.current)
     redirect_to tasks_path, notice: 'タスクを完了しました'
   end
 
   def destroy
-    @task = Task.find(params[:task_id])
     @task.update!(completed_at: nil)
-    redirect_to complete_tasks_path, notice: '未完了に戻ししました'
+    redirect_to completed_tasks_path, notice: '未完了に戻ししました'
+  end
+
+  private
+
+  def set_task
+    @task = Task.find(params[:task_id])
   end
 end

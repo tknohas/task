@@ -17,4 +17,4 @@
           -#     = "#{task.executor.name}"
           %td= task.created_at.strftime("%Y/%m/%d")
           %td
-            = button_to '完了', task_complete_path(task), method: :patch, class: 'btn btn-outline-success'
+            = button_to '完了', task_complete_path(task), method: :post, class: 'btn btn-outline-success'
