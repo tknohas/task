@@ -5,6 +5,6 @@
         = render 'shared/error_messages', resource: task
         = f.input :title
         = f.association :executor, required: false, value_method: :id
-        = f.input :memo
+        = f.input :description
         .mt-2.text-center
           = f.submit text, class: "btn btn-primary mt-2"

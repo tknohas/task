@@ -4,16 +4,16 @@
     %thead.table-light
       %tr
         %th やったこと
-        %th 担当者
-        %th
+        %th 完了日
         %th
     %tbody
       - @completed_tasks.each do |task|
         %tr
           %td= task.title
-          %td= task.user.name
-          %td
-            - if task.executor
-              = "#{task.executor.name}"
+          -# %td= task.user.name
+          -# %td
+          -#   - if task.executor
+          -#     = "#{task.executor.name}"
+          %td= task.completed_at.strftime("%Y/%m/%d")
           %td
             = button_to '未完了にする', task_complete_path(task), method: :delete, data: { turbo_confirm: '未完了にしますか？' }, class: 'btn btn-outline-danger'

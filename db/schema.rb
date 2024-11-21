@@ -25,7 +25,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_20_041625) do
     t.integer "executor_id"
     t.string "title", null: false
     t.datetime "completed_at"
-    t.text "memo", null: false
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["executor_id"], name: "index_tasks_on_executor_id"
@@ -33,12 +33,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_20_041625) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email_address", null: false
-    t.string "password_digest", null: false
-    t.string "name", null: false
+    t.string "line_user_key", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
   add_foreign_key "sessions", "users"

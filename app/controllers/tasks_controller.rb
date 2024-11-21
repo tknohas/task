@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy]
+  before_action :set_task, only: %i[edit update destroy]
 
   def index
     @tasks = Task.incomplete.order(created_at: :desc)
   end
   
   def show
+    @task = Task.incomplete.find(params[:id])
   end
 
   def new
@@ -40,7 +41,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.expect(task: %i[title executor_id memo completed_at])
+    params.expect(task: %i[title executor_id description completed_at])
   end
   
   def set_task

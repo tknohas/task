@@ -5,7 +5,7 @@ class CreateTasks < ActiveRecord::Migration[8.0]
       t.references :executor, foreign_key: { to_table: :users }
       t.string :title, null: false
       t.datetime :completed_at
-      t.text :memo, null: false
+      t.text :description, null: false
 
       t.timestamps
     end

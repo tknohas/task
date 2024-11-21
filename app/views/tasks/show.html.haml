@@ -8,14 +8,20 @@
       .row
         .col-md-8
           %h4.card-title 詳細:
-          %p.card-text= @task.memo
+          %p.card-text= @task.description
           %h4.mt-4 担当者:
           %p.card-text
-            - if @task.executor
-              = "#{@task.executor.name}"
-            - else
+            -# - if @task.executor
+            -#   = "#{@task.executor.name}"
+            -# - else
               未割り当て
           %h4.mt-4 作成者:
-          %p.card-text= @task.user.name
+          -# %p.card-text= @task.user.name
           %h4.mt-4 作成日:
           %p.card-text= @task.created_at.strftime('%Y年%m月%d日')
+          - if @task.user == Current.user
+            .d-flex
+              %td
+                = link_to '編集', edit_task_path(@task), class: 'btn btn-sm btn-outline-primary me-2'
+              %td
+                = button_to '削除', task_path(@task), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-sm btn-outline-danger me-2'
