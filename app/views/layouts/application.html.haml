@@ -28,7 +28,7 @@
       .ms-auto.me-2
         - if authenticated?
           .d-inline-block
-            = link_to '完了済みタスク', complete_tasks_path, class: 'text-white me-2 text-decoration-none'
+            = link_to '完了済みタスク', completed_tasks_path, class: 'text-white me-2 text-decoration-none'
           .d-inline-block
             = button_to 'ログアウト', session_path, method: :delete, class: 'btn btn-outline-danger'
     = yield

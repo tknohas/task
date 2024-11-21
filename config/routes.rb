@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   resource :session, only: :destroy
   resources :passwords, param: :token
   resources :tasks, only: %i[index show new create edit update destroy] do
-    resource :complete, only: %i[update destroy], module: :tasks # TODO: updateではなくcreateで実装
+    resource :complete, only: %i[create destroy], module: :tasks
   end
-  resources :complete_tasks, only: %i[index] #TODO: completed_tasksに変更
+  resources :completed_tasks, only: %i[index]
   resource :webhook, only: :create
 end
