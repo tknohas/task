@@ -6,4 +6,5 @@ class Task < ApplicationRecord
   
   scope :incomplete, -> { where(completed_at: nil) }
   scope :complete, -> { where.not(completed_at: nil) }
+  scope :assigned_user, -> { where.not(executor: nil) }
 end
