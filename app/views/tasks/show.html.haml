@@ -11,12 +11,10 @@
           %p.card-text= @task.description
           %h4.mt-4 担当者:
           %p.card-text
-            -# - if @task.executor
-            -#   = "#{@task.executor.name}"
-            -# - else
-              未割り当て
+            - if @task.executor
+              #{@task.executor.name}
           %h4.mt-4 作成者:
-          -# %p.card-text= @task.user.name
+          %p.card-text= @task.user.name
           %h4.mt-4 作成日:
           %p.card-text= @task.created_at.strftime('%Y年%m月%d日')
           - if @task.user == Current.user
