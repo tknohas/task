@@ -2,6 +2,7 @@
 .container
   .card
     .card-body
+      = link_to 'LINEでログイン', line_login_api_login_path
       - @users.each do |user|
         = form_with url: user_sign_in_path(user) do |form|
-          = form.submit user.id
+          = form.submit user.name
