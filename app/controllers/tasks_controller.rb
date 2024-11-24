@@ -27,6 +27,9 @@ class TasksController < ApplicationController
   
   def update
     if @task.update(task_params)
+      if @task.executor_id.present? && @task.executor_id != @task.user_id
+        NotifyAssignedJob.perform_later(@task, task_url(@task))
+      end
       redirect_to edit_task_path(@task), notice: '変更しました'
     else
       render :edit, status: :unprocessable_entity
