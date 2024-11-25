@@ -1,6 +1,7 @@
 class MonthlyRanksController < ApplicationController
   def index
-    @user_ranks = Task.group(:executor_id)
+    @user_ranks = Task.complete
+                      .group(:executor_id)
                       .where(created_at: Time.current.all_month)
                       .order('COUNT(executor_id) DESC')
                       .count(:executor_id)
