@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   resources :completed_tasks, only: %i[index]
   resource :webhook, only: :create
+  resources :ranks, only: :index
   get 'line_login_api/callback', to: 'line_login_api#callback'
   get 'line_login_api/login', to: 'line_login_api#login'
 end
