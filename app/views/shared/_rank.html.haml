@@ -7,15 +7,16 @@
       %th タスク完了数
   %tbody
     - completed_task = 0
-    - first_place = 1
+    - current_rank = 0
+    - actual_rank = 1
 
-    - ranks.each.with_index(1) do |(user, task_count), rank|
-      - if rank == first_place
-        - completed_task = task_count
+    - ranks.each do |(user, task_count)|
+      - if task_count != completed_task
+        - current_rank = actual_rank
+      - completed_task = task_count
+      - actual_rank += 1
+
       %tr
-        - if task_count != completed_task
-          %td #{rank}位
-        - else
-          %td #{first_place}位
+        %td #{current_rank}位
         %td= user.name
         %td= task_count
