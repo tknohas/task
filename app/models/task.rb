@@ -20,7 +20,7 @@ class Task < ApplicationRecord
       task_counts[user_id] ||= 0
     end
 
-    least_assinged_user_id = task_counts.min_by { |_user_id, count| count }[0]
-    self.executor_id = least_assinged_user_id
+    least_assinged_user = task_counts.select { |_user_id, count| count == task_counts.values.min }.keys
+    self.executor_id = least_assinged_user.sample
   end
 end

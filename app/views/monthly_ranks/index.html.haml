@@ -1,15 +1,3 @@
 .container
   %h2.text-center.mt-4 月間ランキング
-  .d-flex.justify-content-end.mb-3
-  %table.table.table-striped.table-hover
-    %thead.table-light
-      %tr
-        %th 順位
-        %th 担当者
-        %th タスク完了数
-    %tbody
-      - @user_ranks.each.with_index(1) do |(user, task_count), i|
-        %tr
-          %td #{i}位
-          %td= user.name
-          %td= task_count
+  = render 'shared/rank', ranks: @user_ranks
