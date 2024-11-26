@@ -16,7 +16,7 @@ class TasksController < ApplicationController
   def create
     @task = Current.user.tasks.build(task_params)
     if @task.save
-      if @task.executor_id.present?
+      if @task.executor_id.present? && @task.executor_id != @task.user_id
         NotifyAssignedJob.perform_later(@task, task_url(@task))
       end
       redirect_to edit_task_path(@task), notice: '登録しました'
