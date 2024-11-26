@@ -37,6 +37,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_20_041625) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["line_user_key"], name: "index_users_on_line_user_key", unique: true
   end
 
   add_foreign_key "sessions", "users"
